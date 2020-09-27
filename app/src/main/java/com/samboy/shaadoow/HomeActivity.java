@@ -54,6 +54,7 @@ public class HomeActivity extends AppCompatActivity{
         initObserver();
     }
 
+    /***** TO SHOW PROGRESS DIALOG******/
     public void initDialog(Context context) {
         dialog= new Dialog(context, android.R.style.Theme_Black);
         View view = LayoutInflater.from(context).inflate(R.layout.ly_progress, null);
@@ -66,7 +67,12 @@ public class HomeActivity extends AppCompatActivity{
         mArtistList = new ArrayList<>();
         mFeedList = new ArrayList<>();
     }
+    private void getIds(){
+        rvArtist = findViewById(R.id.rvArtist);
+        rvFeeds = findViewById(R.id.rvFeeds);
+    }
 
+    /***** INIT VM ******/
     private void initViewModel(){
         mArtistViewModel = new ViewModelProvider(this).get(ArtistViewModel.class);
         mFeedViewModel = new ViewModelProvider(this).get(FeedViewModel.class);
@@ -74,17 +80,14 @@ public class HomeActivity extends AppCompatActivity{
         mFeedViewModel.init();
     }
 
-
+    /***** INIT OBSERVERS ******/
     private void initObserver(){
         dialog.show();
         mArtistViewModel.getArtist().observe(this,artistObserver);
         mFeedViewModel.getFeeds().observe(this,feedObserver);
     }
 
-    private void getIds(){
-        rvArtist = findViewById(R.id.rvArtist);
-        rvFeeds = findViewById(R.id.rvFeeds);
-    }
+    /***** INIT ARTIST RV ******/
     private void setArtistAdapters(){
         mArtistAdapter  = new ArtistAdapter(mArtistList);
         GridLayoutManager lyMgr = new GridLayoutManager(this, 1, GridLayoutManager.HORIZONTAL, false);
@@ -92,6 +95,8 @@ public class HomeActivity extends AppCompatActivity{
         rvArtist.setAdapter(mArtistAdapter);
 
     }
+
+    /***** INIT FEEDS RV ******/
     private void setFeedAdapters(){
         mFeedAdapter  = new FeedsAdapter(mFeedList);
         GridLayoutManager lyMgr = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
@@ -100,6 +105,7 @@ public class HomeActivity extends AppCompatActivity{
 
     }
 
+    /***** LISTEN DATA CHANGES ******/
     Observer<List<Artist>> artistObserver = artists -> {
         this.mArtistList = artists;
         mArtistAdapter.updateData(this.mArtistList);

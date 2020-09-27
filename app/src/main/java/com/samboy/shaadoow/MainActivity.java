@@ -22,12 +22,15 @@ public class MainActivity extends AppCompatActivity {
         startTimer();
     }
 
+
     private void getIds(){
         imgSplash = findViewById(R.id.imgSplash);
     }
+
     private void setImage(){
         Glide.with(this).load(R.drawable.sh_logo).into(imgSplash);
     }
+
     private void startTimer(){
         new Handler().postDelayed(this::gotoHome,3000);
     }

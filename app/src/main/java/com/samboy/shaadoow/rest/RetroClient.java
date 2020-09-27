@@ -43,6 +43,7 @@ public class RetroClient {
 
     }
 
+    /***** ADDING TIMEOUT AND HOST VERIFIER ******/
     private static OkHttpClient getClient() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.protocols(Arrays.asList(Protocol.HTTP_2, Protocol.HTTP_1_1, Protocol.SPDY_3));
@@ -66,6 +67,7 @@ public class RetroClient {
         return api;
     }
 
+    /***** TO AVOID INT MISMATCH ******/
     public static class IntTypeAdapter extends TypeAdapter<Number> {
         @Override
         public void write(JsonWriter out, Number value)
