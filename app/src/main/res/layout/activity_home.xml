@@ -23,6 +23,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/txtHomeRecommend"
                 android:text="@string/recommended"
@@ -30,13 +31,7 @@
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-            <TextView
-                android:text="@string/see_all"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="10dp"
-                android:textColor="@color/colorSh1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvArtist"
                 android:layout_below="@+id/txtHomeRecommend"

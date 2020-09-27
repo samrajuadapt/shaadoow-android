@@ -66,12 +66,13 @@
         <ImageView
             android:id="@+id/adaFeedImage"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_200sdp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_5sdp">
+            android:padding="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp">
             <ImageView
                 android:id="@+id/adaFeedThumb"
                 android:src="@drawable/ic_outline_thumb"

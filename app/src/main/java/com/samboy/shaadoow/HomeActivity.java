@@ -6,8 +6,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
 
 import com.samboy.shaadoow.adapter.ArtistAdapter;
 import com.samboy.shaadoow.adapter.FeedsAdapter;
@@ -18,8 +23,11 @@ import com.samboy.shaadoow.viewmodels.FeedViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity{
+
+    private Dialog dialog;
 
     private ArtistViewModel mArtistViewModel;
     private FeedViewModel mFeedViewModel;
@@ -37,12 +45,21 @@ public class HomeActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        initDialog(this);
         init();
         getIds();
         setArtistAdapters();
         setFeedAdapters();
         initViewModel();
         initObserver();
+    }
+
+    public void initDialog(Context context) {
+        dialog= new Dialog(context, android.R.style.Theme_Black);
+        View view = LayoutInflater.from(context).inflate(R.layout.ly_progress, null);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(R.color.transparent);
+        dialog.setContentView(view);
     }
 
     private void init(){
@@ -59,6 +76,7 @@ public class HomeActivity extends AppCompatActivity{
 
 
     private void initObserver(){
+        dialog.show();
         mArtistViewModel.getArtist().observe(this,artistObserver);
         mFeedViewModel.getFeeds().observe(this,feedObserver);
     }
@@ -90,6 +108,7 @@ public class HomeActivity extends AppCompatActivity{
     Observer<List<Feed>> feedObserver = feeds -> {
         this.mFeedList = feeds;
         mFeedAdapter.updateData(mFeedList);
+        dialog.dismiss();
     };
 
 }
