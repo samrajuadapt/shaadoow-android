@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.samboy.shaadoow.adapter.ArtistAdapter;
+import com.samboy.shaadoow.adapter.FeedsAdapter;
 import com.samboy.shaadoow.model.Artist;
 import com.samboy.shaadoow.model.Feed;
 import com.samboy.shaadoow.viewmodels.ArtistViewModel;
@@ -29,13 +30,17 @@ public class HomeActivity extends AppCompatActivity{
     private ArtistAdapter mArtistAdapter;
     private RecyclerView rvArtist;
 
+    private FeedsAdapter mFeedAdapter;
+    private RecyclerView rvFeeds;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         init();
         getIds();
-        setAdapters();
+        setArtistAdapters();
+        setFeedAdapters();
         initViewModel();
         initObserver();
     }
@@ -60,12 +65,20 @@ public class HomeActivity extends AppCompatActivity{
 
     private void getIds(){
         rvArtist = findViewById(R.id.rvArtist);
+        rvFeeds = findViewById(R.id.rvFeeds);
     }
-    private void setAdapters(){
+    private void setArtistAdapters(){
         mArtistAdapter  = new ArtistAdapter(mArtistList);
         GridLayoutManager lyMgr = new GridLayoutManager(this, 1, GridLayoutManager.HORIZONTAL, false);
         rvArtist.setLayoutManager(lyMgr);
         rvArtist.setAdapter(mArtistAdapter);
+
+    }
+    private void setFeedAdapters(){
+        mFeedAdapter  = new FeedsAdapter(mFeedList);
+        GridLayoutManager lyMgr = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
+        rvFeeds.setLayoutManager(lyMgr);
+        rvFeeds.setAdapter(mFeedAdapter);
 
     }
 
@@ -76,6 +89,7 @@ public class HomeActivity extends AppCompatActivity{
 
     Observer<List<Feed>> feedObserver = feeds -> {
         this.mFeedList = feeds;
+        mFeedAdapter.updateData(mFeedList);
     };
 
 }

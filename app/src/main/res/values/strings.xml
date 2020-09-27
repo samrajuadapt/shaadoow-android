@@ -3,4 +3,10 @@
     <string name="recommended">Recommended for you</string>
     <string name="see_all">See All</string>
     <string name="_100">100</string>
+    <string name="post_feeds">Post Feeds</string>
+    <string name="_1_hr">1 hr</string>
+    <string name="user_name">User Name</string>
+    <string name="share">Share</string>
+    <string name="comments">Comments</string>
+    <string name="_100_likes">100 Likes</string>
 </resources>
