@@ -42,6 +42,7 @@ public class FeedRepo {
         api.getFeeds(page,limit).enqueue(new Callback<FeedResponse>() {
             @Override
             public void onResponse(Call<FeedResponse> call, Response<FeedResponse> response) {
+                Log.e("TAG", "onResponse: "+response );
                 if(response.body().isSuccess()){
                     mList = response.body().getmFeedList();
                     mutableLiveData.postValue(mList);
@@ -50,7 +51,7 @@ public class FeedRepo {
 
             @Override
             public void onFailure(Call<FeedResponse> call, Throwable t) {
-
+                Log.e("TAG", "onFailure: "+t );
             }
         });
 

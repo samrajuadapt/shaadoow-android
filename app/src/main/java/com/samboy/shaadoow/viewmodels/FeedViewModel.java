@@ -24,7 +24,7 @@ public class FeedViewModel extends ViewModel {
         mFeedList = mRepo.getFeeds(SC.DEFAULT_PAGE,SC.DEFAULT_FEED_LIMIT);
     }
 
-    public LiveData<List<Feed>> getFeeeds(){
+    public LiveData<List<Feed>> getFeeds(){
         return  mFeedList;
     }
 

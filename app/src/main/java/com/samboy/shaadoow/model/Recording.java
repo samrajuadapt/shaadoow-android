@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class Recording {
     @SerializedName("duration")
     @Expose
-    public int duration;
+    public double duration;
     @SerializedName("type")
     @Expose
     public String type;
@@ -26,11 +26,11 @@ public class Recording {
     @Expose
     public int recording_id;
 
-    public int getDuration() {
+    public double getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(double duration) {
         this.duration = duration;
     }
 
